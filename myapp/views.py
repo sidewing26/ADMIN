@@ -4,7 +4,7 @@ from django.shortcuts import render
 
 def index(request):
 
-    return render(request, 'indec.html')
+    return render(request, 'index.html')
 
 def detail(request, pk):
 
