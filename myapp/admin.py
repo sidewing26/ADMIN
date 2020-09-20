@@ -6,13 +6,13 @@ from import_export.admin import ExportActionModelAdmin, ImportExportMixin, Impor
 # Register your models here.
 
 class DisplayCelebrity(ImportExportMixin, admin.ModelAdmin):
-    list_display = ('name', 'job', 'birth', 'edu', 'photo', 'get_image')
+    list_display = ('name', 'job', 'birth', 'edu', 'get_image')
 
     def get_image(self, obj):
         return mark_safe('<img src="{url}" width="{width} height ="{height}"/>'.format(
             url = obj.photo.url,
-            width = 200,
-            height = 200,
+            width = 150,
+            height = 150,
         ))
 
 admin.site.register(Celebrity, DisplayCelebrity)

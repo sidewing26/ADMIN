@@ -1,6 +1,5 @@
 from django.db import models
 from datetime import datetime
-from django.utils import timezone
 
 # Create your models here.
 
@@ -13,6 +12,19 @@ class Celebrity(models.Model):
 
     visitor_today = models.IntegerField(default = 0, verbose_name = '오늘 방문자')
     visitor_total = models.IntegerField(default = 0, verbose_name = '총 방문자')
+    visited_day = models.TextField(blank = True, null = True, verbose_name = '방문일자')
 
+    @property
     def visitor(self):
-        pass
+        today = datetime.today().strftime("%Y-%m-%d")
+        if self.visited_day == today:
+            self.visitor_today += 1
+            self.visitor_total += 1
+            self.save()
+
+        else:
+            self.visited_day = today
+            self.visitor_today = 0
+            self.visitor_today += 1
+            self.visitor_total += 1
+            self.save()

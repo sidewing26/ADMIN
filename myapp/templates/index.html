@@ -22,10 +22,25 @@
     {% endblock %}
 </head>
 
+<form method='POST' action='' enctype="multipart/form-data">
+{% csrf_token %}
+
+{% for celebrity in celebrity %}
+<a href="{% url 'detail' celebrity.pk %}">
 <div class="row" style="padding: 50px;">
-    <div class="col">s</div>
-    <div class="col-8">s</div>
+    <div class="col" style="padding-left: 200px;"><img src="{{ celebrity.photo.url }}" alt=""></div>
+    <div class="col-8">
+        <p>이름 : {{ celebrity.name }}</p>
+        <p>직업 : {{ celebrity.job }}</p>
+        <p>생년월일 : {{ celebrity.birth }}</p>
+        <p>학력 : {{ celebrity.edu }}</p>
+    </div>
 </div>
+</a>
+
+{% endfor %}
+
+</form>
 
 </body>
 

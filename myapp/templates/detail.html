@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+    <title>ADMIN</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <!-- 웹 폰트 -->
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+
+    <style>
+        body,
+        div {
+            font-family: 'Do Hyeon', sans-serif;
+        }
+    </style>
+    {% block head %}
+    {% endblock %}
+</head>
+
+<form method='post' action='{% url "detail" celebrity.pk %}' enctype="multipart/form-data">
+{% csrf_token %}
+
+<div class="row" style="padding: 50px;">
+    <div class="col" style="padding-left: 200px;"><img src="{{ celebrity.photo.url }}" alt=""></div>
+    <div class="col-8">
+        <p>이름 : {{ celebrity.name }}</p>
+        <p>직업 : {{ celebrity.job }}</p>
+        <p>생년월일 : {{ celebrity.birth }}</p>
+        <p>학력 : {{ celebrity.edu }}</p>
+        <p>Today : {{ celebrity.visitor_today }}</p>
+        <p>Total : {{ celebrity.visitor_total }}</p>
+    </div>
+</div>
+
+
+</form>
+
+</body>
+
+</html>
