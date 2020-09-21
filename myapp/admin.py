@@ -7,6 +7,8 @@ from import_export.admin import ExportActionModelAdmin, ImportExportMixin, Impor
 
 class DisplayCelebrity(ImportExportMixin, admin.ModelAdmin):
     list_display = ('name', 'job', 'birth', 'edu', 'get_image')
+    search_fields = ('name', 'job')
+    list_filter = ('job',)
 
     def get_image(self, obj):
         return mark_safe('<img src="{url}" width="{width} height ="{height}"/>'.format(
